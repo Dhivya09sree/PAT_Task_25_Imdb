@@ -28,15 +28,15 @@ class IMDb:
 #Click the expand button
 
     def click_expand(self):
-        element = self.driver.find_element(By.CSS_SELECTOR, "#__next > main > div.ipc-page-content-container.ipc-page-content-container--center.sc-f9aead43-0.evyTrd > div.ipc-page-content-container.ipc-page-content-container--center > section > section > div > section > section > div:nth-child(2) > div > section > div.ipc-page-grid.ipc-page-grid--bias-left.ipc-page-grid__item.ipc-page-grid__item--span-2 > div.sc-57ba0b6e-0.dyvviw.ipc-page-grid__item.ipc-page-grid__item--span-1 > div > button > span")  # Using CSS selector
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        element_expand = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#__next > main > div.ipc-page-content-container.ipc-page-content-container--center.sc-f9aead43-0.evyTrd > div.ipc-page-content-container.ipc-page-content-container--center > section > section > div > section > section > div:nth-child(2) > div > section > div.ipc-page-grid.ipc-page-grid--bias-left.ipc-page-grid__item.ipc-page-grid__item--span-2 > div.sc-57ba0b6e-0.dyvviw.ipc-page-grid__item.ipc-page-grid__item--span-1 > div > button > span"))) # Using CSS selector
+        self.driver.execute_script("arguments[0].scrollIntoView();",element_expand)
         # click the Expand all button
-        Expand = self.driver.find_element(By.XPATH, '//span[text()="Expand all"]')
+        expand_button = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//span[text()="Expand all"]')))
 
         clicked = False
         for _ in range(3):
             try:
-                Expand.click()
+                expand_button.click()
                 clicked = True
                 break
             except Exception as e:
@@ -49,12 +49,12 @@ class IMDb:
 # Fill the Actor name
 
     def fill_Name(self, name):
-        element = self.driver.find_element(By.XPATH, '(//input[@type="text"])[2]')
+        element =  WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, '(//input[@type="text"])[2]')))
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
 
         # Wait for the input field to be present
-        enter_name_field =self.driver.find_element(By.XPATH, '(//input[@type="text"])[2]')
+        enter_name_field = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, '(//input[@type="text"])[2]')))
 
 
         clicked = False
@@ -78,12 +78,12 @@ class IMDb:
 
     def fill_DOB(self, Dob,enddate):
 
-      Enter_Dob_field = self.driver.find_element(By.XPATH, '(//input[@type="text"])[3]')
+      Enter_Dob_field =  WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, '(//input[@type="text"])[3]')))
 
       Enter_Dob_field.send_keys(Dob)
 
     # Enter_Dob_field.click()
-      Enter_endDob_field = self.driver.find_element(By.XPATH, '(//input[@type="text"])[4]')
+      Enter_endDob_field =  WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, '(//input[@type="text"])[4]')))
 
       Enter_endDob_field.send_keys(enddate)
 
@@ -104,7 +104,7 @@ class IMDb:
     # select_Awards_recognition
     def select_Awards_recognition(self):
 
-        Awards_recognition = self.driver.find_element(By.XPATH, '//*[@id="accordion-item-awardsAccordion"]/div/section/button[1]')
+        Awards_recognition =  WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="accordion-item-awardsAccordion"]/div/section/button[1]')))
         clicked = False
         for _ in range(3):
             try:
@@ -122,7 +122,7 @@ class IMDb:
     def select_Page_topics(self):
 
         # select_Page_topics
-        Page_topics = self.driver.find_element(By.XPATH, '//*[@id="accordion-item-pageTopicsAccordion"]/div/div/section/button[1]')
+        Page_topics =  WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="accordion-item-pageTopicsAccordion"]/div/div/section/button[1]')))
         clicked = False
         for _ in range(3):
             try:
@@ -138,7 +138,7 @@ class IMDb:
 
      #choose the gender
     def select_gender(self):
-        gender = self.driver.find_element(By.XPATH,'//*[@id="accordion-item-genderIdentityAccordion"]/div/section/button[1]')
+        gender = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH,'//*[@id="accordion-item-genderIdentityAccordion"]/div/section/button[1]')))
         clicked = False
         for _ in range(3):
             try:
@@ -154,7 +154,7 @@ class IMDb:
 
 # Enter the film name
     def credits(self,credit):
-        credits = self.driver.find_element(By.XPATH, '//*[@id="accordion-item-filmographyAccordion"]/div/div/div/div[1]/input')
+        credits =  WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="accordion-item-filmographyAccordion"]/div/div/div/div[1]/input')))
 
         credits .send_keys(credit)
 
